@@ -37,6 +37,13 @@ class DictionaryController extends Controller
         return $response;
     }
 
+    public function getDictionary()
+    {
+        $data = Dictionary::orderBy('ru', 'DESC')->skip(0)->take(40)->get();
+        $response = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+        return $response;
+    }
+
     public function categoryStore(Request $request)
     {
         DictionaryCat::insert(

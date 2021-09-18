@@ -1,5 +1,11 @@
 <template>
     <div class="container">
+        <div class="btn-group">
+            <a type="button" class="btn btn-success" href="./login">Kirish</a>
+            <a type="button" class="btn btn-warning" href="./register">A'zo bo'lish</a>
+            <a type="button" class="btn btn-danger" href="./dictionary/create">So'z qo'shish</a>
+        </div>
+        <hr>
         <div class="input-group mb-3">
             <div class="form-floating col">
                 <input type="text" class="form-control" placeholder="Inglizchaa" autofocus v-model="inglizcha">
@@ -62,7 +68,20 @@ export default {
             this.ruschaFunction();
         }
     },
+    mounted() {
+        this.getDictonayr()
+    },
     methods: {
+        getDictonayr() {
+            axios.get('/api/dictonary/getdictionary')
+                .then((response) => {
+                    this.results = response.data
+                })
+                .catch(error => {
+                        //alert('Qandaydur xatolik')
+                    }
+                );
+        },
         inglizchaFunction() {
             axios.post('/api/getEng',
                 {
@@ -72,7 +91,7 @@ export default {
                     this.results = response.data
                 })
                 .catch(error => {
-                        alert('Qandaydur xatolik')
+                     //   alert('Qandaydur xatolik')
                     }
                 );
         },
@@ -85,7 +104,7 @@ export default {
                     this.results = response.data
                 })
                 .catch(error => {
-                        alert('Qandaydur xatolik')
+                      //  alert('Qandaydur xatolik')
                     }
                 );
         },
@@ -98,7 +117,7 @@ export default {
                     this.results = response.data
                 })
                 .catch(error => {
-                        alert('Qandaydur xatolik')
+                       // alert('Qandaydur xatolik')
                     }
                 );
         }

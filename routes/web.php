@@ -15,7 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\DictionaryController::class, 'index']);
 
-Route::get('/dictionary/create', [\App\Http\Controllers\DictionaryController::class, 'create']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/category/create', [\App\Http\Controllers\DictionaryController::class, 'category']);
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dictionary/create', [\App\Http\Controllers\DictionaryController::class, 'create']);
+
+    Route::get('/category/create', [\App\Http\Controllers\DictionaryController::class, 'category']);
+
+});
+Auth::routes();
 
