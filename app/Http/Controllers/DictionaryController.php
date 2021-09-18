@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dictionary;
 use App\Models\DictionaryCat;
 use Illuminate\Http\Request;
+use Auth;
 
 class DictionaryController extends Controller
 {
@@ -16,7 +17,7 @@ class DictionaryController extends Controller
     public function getUz(Request $request)
     {
         $matn = $request['keywords'];
-        $data = Dictionary::where('uz', 'like', "%{$matn}%")->orderBy('uz', 'DESC')->get();
+        $data = Dictionary::where('uz', 'like', "%{$matn}%")->where('status', 1)->orderBy('uz', 'DESC')->get();
         $response = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         return $response;
     }
@@ -24,7 +25,7 @@ class DictionaryController extends Controller
     public function getEng(Request $request)
     {
         $matn = $request['keywords'];
-        $data = Dictionary::where('eng', 'like', "%{$matn}%")->orderBy('eng', 'DESC')->get();
+        $data = Dictionary::where('eng', 'like', "%{$matn}%")->where('status', 1)->orderBy('eng', 'DESC')->get();
         $response = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         return $response;
     }
@@ -32,14 +33,14 @@ class DictionaryController extends Controller
     public function getRu(Request $request)
     {
         $matn = $request['keywords'];
-        $data = Dictionary::where('ru', 'like', "%{$matn}%")->orderBy('ru', 'DESC')->get();
+        $data = Dictionary::where('ru', 'like', "%{$matn}%")->where('status', 1)->orderBy('ru', 'DESC')->get();
         $response = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         return $response;
     }
 
     public function getDictionary()
     {
-        $data = Dictionary::orderBy('ru', 'DESC')->skip(0)->take(40)->get();
+        $data = Dictionary::orderBy('ru', 'DESC')->where('status', 1)->skip(0)->take(40)->get();
         $response = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         return $response;
     }
@@ -60,8 +61,11 @@ class DictionaryController extends Controller
 
     public function dictonaryStore(Request $request)
     {
+        $user_id = $request->user()->id;
+        dd($user_id);
         Dictionary::insert(
             [
+                'user_id' => $user_id,
                 'eng' => $request['eng'],
                 'uz' => $request['uz'],
                 'ru' => $request['ru'],

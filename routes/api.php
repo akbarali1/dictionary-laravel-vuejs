@@ -19,10 +19,6 @@ Route::post('/getEng', [\App\Http\Controllers\DictionaryController::class, 'getE
 Route::post('/getUz', [\App\Http\Controllers\DictionaryController::class, 'getUz']);
 Route::post('/getRu', [\App\Http\Controllers\DictionaryController::class, 'getRu']);
 
-Route::middleware(['auth'])->group(function () {
-
-    Route::post('/category/save', [\App\Http\Controllers\DictionaryController::class, 'categoryStore']);
-    Route::post('/dictonary/save', [\App\Http\Controllers\DictionaryController::class, 'dictonaryStore']);
-
-});
+Route::post('/category/save', [\App\Http\Controllers\DictionaryController::class, 'categoryStore']);
+Route::post('/dictonary/save', [\App\Http\Controllers\DictionaryController::class, 'dictonaryStore']);
 

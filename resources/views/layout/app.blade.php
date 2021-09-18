@@ -14,7 +14,9 @@
 </head>
 <body>
 <div id="app">
-
+    <a href="https://github.com/akbarali1/dictionary-laravel-vuejs" target="_blank">
+        <img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></img>
+    </a>
     <main class="py-4">
         @yield('content')
     </main>
