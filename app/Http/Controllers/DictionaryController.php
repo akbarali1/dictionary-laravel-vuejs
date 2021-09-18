@@ -15,21 +15,24 @@ class DictionaryController extends Controller
 
     public function getUz(Request $request)
     {
-        $data = Dictionary::where('uz', 'LIKE', '%' . $request->keyword . '%')->get();
+        $matn = $request['keywords'];
+        $data = Dictionary::where('uz', 'like', "%{$matn}%")->orderBy('uz', 'DESC')->get();
         $response = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         return $response;
     }
 
     public function getEng(Request $request)
     {
-        $data = Dictionary::where('eng', 'LIKE', '%' . $request->keyword . '%')->get();
+        $matn = $request['keywords'];
+        $data = Dictionary::where('eng', 'like', "%{$matn}%")->orderBy('eng', 'DESC')->get();
         $response = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         return $response;
     }
 
     public function getRu(Request $request)
     {
-        $data = Dictionary::where('ru', 'LIKE', '%' . $request->keyword . '%')->get();
+        $matn = $request['keywords'];
+        $data = Dictionary::where('ru', 'like', "%{$matn}%")->orderBy('ru', 'DESC')->get();
         $response = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
         return $response;
     }

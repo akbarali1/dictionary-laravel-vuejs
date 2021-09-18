@@ -66,9 +66,7 @@ export default {
         inglizchaFunction() {
             axios.post('/api/getEng',
                 {
-                    params: {
-                        keywords: this.inglizcha
-                    }
+                    keywords: this.inglizcha
                 })
                 .then((response) => {
                     this.results = response.data
@@ -81,9 +79,7 @@ export default {
         uzbekchaFunction() {
             axios.post('/api/getUz',
                 {
-                    params: {
-                        keywords: this.uzbekcha
-                    }
+                    keywords: this.uzbekcha
                 })
                 .then((response) => {
                     this.results = response.data
@@ -96,9 +92,7 @@ export default {
         ruschaFunction() {
             axios.post('/api/getRu',
                 {
-                    params: {
-                        keywords: this.ruscha
-                    }
+                    keywords: this.ruscha
                 })
                 .then((response) => {
                     this.results = response.data
