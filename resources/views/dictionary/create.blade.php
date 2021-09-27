@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 @section('content')
     <dictionary-create></dictionary-create>
 @endsection

@@ -19,7 +19,7 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component',  () => import('./components/ExampleComponent.vue'));
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('dictionary-index',  () => import('./components/DictionaryIndex.vue'));
 Vue.component('dictionary-create',  () => import('./components/DictionaryCreate.vue'));
 Vue.component('dictionary-cat',  () => import('./components/DictionaryCategory.vue'));

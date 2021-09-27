@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DicCreateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dictionary/create', [\App\Http\Controllers\DictionaryController::class, 'create']);
+    Route::post('/dictionary/save', [DicCreateController::class, 'dictonaryStore']);
 
     Route::get('/category/create', [\App\Http\Controllers\DictionaryController::class, 'category']);
+    Route::post('/category/save', [\App\Http\Controllers\DictionaryController::class, 'categoryStore']);
+
 
 });
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dictionary;
 use App\Models\DictionaryCat;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class DictionaryController extends Controller
 {
@@ -49,23 +49,6 @@ class DictionaryController extends Controller
     {
         DictionaryCat::insert(
             [
-                'eng' => $request['eng'],
-                'uz' => $request['uz'],
-                'ru' => $request['ru'],
-            ]
-        );
-        $response = json_encode(['save' => "Malumotlar saqlandi"], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-
-        return response($response, 200)->header('Content-Type', 'application/json');
-    }
-
-    public function dictonaryStore(Request $request)
-    {
-        $user_id = $request->user()->id;
-        dd($user_id);
-        Dictionary::insert(
-            [
-                'user_id' => $user_id,
                 'eng' => $request['eng'],
                 'uz' => $request['uz'],
                 'ru' => $request['ru'],

@@ -14,11 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/dictonary/getdictionary', [\App\Http\Controllers\DictionaryController::class, 'getDictionary']);
-
 Route::post('/getEng', [\App\Http\Controllers\DictionaryController::class, 'getEng']);
 Route::post('/getUz', [\App\Http\Controllers\DictionaryController::class, 'getUz']);
 Route::post('/getRu', [\App\Http\Controllers\DictionaryController::class, 'getRu']);
-
-Route::post('/category/save', [\App\Http\Controllers\DictionaryController::class, 'categoryStore']);
-Route::post('/dictonary/save', [\App\Http\Controllers\DictionaryController::class, 'dictonaryStore']);
 
