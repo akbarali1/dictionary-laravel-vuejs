@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DictionaryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/dictonary/getdictionary', [\App\Http\Controllers\DictionaryController::class, 'getDictionary']);
-Route::post('/getEng', [\App\Http\Controllers\DictionaryController::class, 'getEng']);
-Route::post('/getUz', [\App\Http\Controllers\DictionaryController::class, 'getUz']);
-Route::post('/getRu', [\App\Http\Controllers\DictionaryController::class, 'getRu']);
+Route::get('/dictonary/getdictionary', [DictionaryController::class, 'getDictionary']);
+Route::post('/getEng', [DictionaryController::class, 'getEng']);
+Route::post('/getUz', [DictionaryController::class, 'getUz']);
+Route::post('/getRu', [DictionaryController::class, 'getRu']);
 

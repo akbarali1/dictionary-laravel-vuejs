@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DicCreateController;
+use App\Http\Controllers\DictionaryController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,21 +15,20 @@ use App\Http\Controllers\DicCreateController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/', [\App\Http\Controllers\DictionaryController::class, 'index']);
+Route::get('/', [DictionaryController::class, 'index']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dictionary/create', [\App\Http\Controllers\DictionaryController::class, 'create']);
+    Route::get('/dictionary/create', [DictionaryController::class, 'create']);
     Route::post('/dictionary/save', [DicCreateController::class, 'dictonaryStore']);
 
-    Route::get('/category/create', [\App\Http\Controllers\DictionaryController::class, 'category']);
-    Route::post('/category/save', [\App\Http\Controllers\DictionaryController::class, 'categoryStore']);
-
+    Route::get('/category/create', [DictionaryController::class, 'category']);
+    Route::post('/category/save', [DictionaryController::class, 'categoryStore']);
 
 });
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
